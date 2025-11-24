@@ -1,0 +1,25 @@
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+<body>
+  <%- include("../partials/nav.ejs") %>
+
+  <div class="create-blog content">
+    <!-- The 'action' attribute is the URI to where this form will be requested -->
+    <!-- The 'method' attribute denounces the type of request the form is making (GET, POST, DELETE, etc.)-->
+    <form action="/blogs" method="POST">
+      <label for="title">Blog title:</label>
+      <!-- The 'name' attribute provides properties for the body sent from this form
+       that can be accessed in other methods -->
+      <input type="text" id="title" name="title" required>
+      <label for="snippet">Blog snippet:</label>
+      <input type="text" id="snippet" name="snippet" required>
+      <label for="body">Blog body:</label>
+      <textarea id="body" name="body" required></textarea>
+      <button>Submit</button>
+    </form>
+  </div>
+
+  <%- include("../partials/footer.ejs") %>
+</body>
+</html>
