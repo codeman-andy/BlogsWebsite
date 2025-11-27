@@ -111,5 +111,16 @@
       cursor: pointer;
     }
     .create-user form{
+      max-width: 400px;
+      margin: 0 auto;
       display: grid;
+    }
+    .create-user label{
+      margin-top: 6px;
+    }
+    .create-user button{
+      margin-top: 24px;
+      padding: 6px;
+      font-size: 1.2em;
+      cursor: pointer;
     }

@@ -56,5 +56,6 @@ const user_details = (req, res) => {
 module.exports = {
     user_create_get,
     user_create_post,
+    user_create_successful_get,
     user_details
 }

@@ -1,0 +1,15 @@
+<html lang="en">
+<%- include("../partials/head.ejs") %>
+
+<body>
+    <%- include("../partials/nav_user_create.ejs") %>
+    Account created successfully. Redirecting to Homepage...
+
+    <%- include("../partials/footer.ejs") %>
+
+    <script>
+        // Tells the browser to wait 5 seconds before redirecting to the Homepage
+        setTimeout(() => {location.replace("/")}, 5000)
+    </script>
+</body>
+</html>

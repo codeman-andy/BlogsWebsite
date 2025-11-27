@@ -11,13 +11,17 @@ const router = express.Router();
 const userController = require('../controllers/userControllers');
 
 
-// GET-handler for the '/user/create' URL. Must be placed above the below handlers, otherwise
-// '/create' will be misconstrued as a ':blogID' route-parameter
+// GET-handler for the '/user/create' URL
 router.get('/create', userController.user_create_get);
 
 // POST-handler for the '/user/create' URL
 // It is called once a user submits a new user form in the '/user/create' page
 router.post('/create', userController.user_create_post);
+
+// GET-handler for the '/user/create/successful' URL. Must be placed above the below handler, otherwise
+// '/create' will be misconstrued as a ':blogID' route-parameter.
+// It is called once a user successfully creates a new account on the website
+router.get('/create/successful', userController.user_create_successful_get);
 
 // GET-handler for the '/user/:userID' URL. Here, the ':userID' is a variable route-parameter
 // It is called once a user selects its profile to go into its details-View page
