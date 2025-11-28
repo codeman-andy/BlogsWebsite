@@ -33,6 +33,41 @@ const user_create_successful_get = (req, res) => {
   res.render('users/create_successful', { title: 'Creation Successful' });
 }
 
+// The controller for the '/user/login' GET-handler
+const user_login_get = (req, res) => {
+  // Renders the login-View
+  res.render('users/login', { title: 'Account Login' });
+}
+
+// The controller for the '/user/login' POST-handler
+// It requires the 'async' statement so it can use 'await' inside it
+const user_login_post = async (req, res) => {
+  // Retrieves the .username and .password properties found within the 'body' attribute
+  // of the Request-object. This is because this method will always only be triggered
+  // once a user has filled out the login-form, so the Request-Object will always possess
+  // these two properties of the user-object schema.
+  // It AWAITS to check if the username EXISTS in the database, because if it would not wait
+  // then the .exists method would return a <Pending> Promise (i.e. an ongoing query), instead
+  // of the result of the query. If it does exist, it returns the _id property of the found
+  // document, otherwise it returns 'null' and so can be used in If-statements.
+  // It then AWAITS to checks if the password is correct. If both are, it redirects to the Homepage.
+  // ELSE, it refreshes the login-View and asks the user to retry inputting their username and password
+  if (await User.exists({ username: req.body.username })) {
+    if (await User.exists({ password: req.body.password })) {
+      console.log('Inside password-check');
+      res.redirect('/');
+    }
+    else {
+      console.log('No password match');
+      res.render('users/login', { title: 'Account Login', retry: true })
+    }
+  }
+  else {
+    console.log('No username match');
+    res.render('users/login', { title: 'Account Login', retry: true })
+  }
+}
+
 // The controller for the '/user/:userID' GET-handler
 const user_details = (req, res) => {
   // Stores the submitted ID of the requested user into a CONSTANT
@@ -57,5 +92,7 @@ module.exports = {
     user_create_get,
     user_create_post,
     user_create_successful_get,
+    user_login_get,
+    user_login_post,
     user_details
 }

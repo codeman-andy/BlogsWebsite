@@ -18,25 +18,6 @@ const blog_index = (req, res) => {
     .catch((err) => {console.log(err)})
 }
 
-// The controller for the '/blogs/:blogID' GET-handler
-const blog_details = (req, res) => {
-  // Stores the submitted ID of the requested blog into a CONSTANT
-  const id = req.params.blogID
-  // FINDS the document in the collection with the unique '__id' property value that is the same as
-  // the one requested by the browser (i.e. the ':blogID' route-parameter)
-  // THEN renders the details-View and provides it with the 'result' of the .findById method, which
-  // returns a document-object which uses the schema of the blog-objects, and so it is ready to be
-  // passed-on down to the script inside the details-View
-  // CATCHES any error and logs it onto the console, and assigns the status of the Response-object
-  // to 404 before redirecting the browser to the 404-View page
-  Blog.findById(id)
-    .then((result) => {res.render('blogs/details', { blog: result, title: result.title })})
-    .catch((err) => {
-      console.log(err)
-      res.status(404).render('404', { title: 'Blog Not Found' })
-    })
-}
-
 // The controller for the '/blogs/create' GET-handler
 const blog_create_get = (req, res) => {
   // Renders the create-View
@@ -57,6 +38,25 @@ const blog_create_post = (req, res) => {
     .catch((err) => {console.log(err)})
 }
 
+// The controller for the '/blogs/:blogID' GET-handler
+const blog_details = (req, res) => {
+  // Stores the submitted ID of the requested blog into a CONSTANT
+  const id = req.params.blogID
+  // FINDS the document in the collection with the unique '__id' property value that is the same as
+  // the one requested by the browser (i.e. the ':blogID' route-parameter)
+  // THEN renders the details-View and provides it with the 'result' of the .findById method, which
+  // returns a document-object which uses the schema of the blog-objects, and so it is ready to be
+  // passed-on down to the script inside the details-View
+  // CATCHES any error and logs it onto the console, and assigns the status of the Response-object
+  // to 404 before redirecting the browser to the 404-View page
+  Blog.findById(id)
+    .then((result) => {res.render('blogs/details', { blog: result, title: result.title })})
+    .catch((err) => {
+      console.log(err)
+      res.status(404).render('404', { title: 'Blog Not Found' })
+    })
+}
+
 // The controller for the '/blogs/:blogID' DEL-handler
 const blog_delete = (req, res) => {
   // Stores the submitted ID of the requested blog into a CONSTANT
@@ -75,8 +75,8 @@ const blog_delete = (req, res) => {
 // Exports the functions in this script so it may be accessed inside other scripts
 module.exports = {
     blog_index,
-    blog_details,
     blog_create_get,
     blog_create_post,
+    blog_details,
     blog_delete
 }

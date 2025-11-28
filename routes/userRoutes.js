@@ -23,6 +23,13 @@ router.post('/create', userController.user_create_post);
 // It is called once a user successfully creates a new account on the website
 router.get('/create/successful', userController.user_create_successful_get);
 
+// GET-handler for the '/user/login' URL
+router.get('/login', userController.user_login_get);
+
+// POST-handler for the '/user/login' URL
+// It is called once a user submits a new user form in the '/user/login' page
+router.post('/login', userController.user_login_post);
+
 // GET-handler for the '/user/:userID' URL. Here, the ':userID' is a variable route-parameter
 // It is called once a user selects its profile to go into its details-View page
 router.get('/:userID', userController.user_details);

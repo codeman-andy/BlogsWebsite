@@ -2,19 +2,19 @@
 <%- include("../partials/head.ejs") %>
 
 <body>
-  <%- include("../partials/nav_user_create.ejs") %>
+  <%- include("../partials/nav.ejs") %>
 
-  <div class="create-user content">
+  <div class="login-user content">
     <!-- The 'action' attribute is the URI to where this form will be requested -->
     <!-- The 'method' attribute denounces the type of request the form is making (GET, POST, DELETE, etc.)-->
-    <form action="/user/create" method="POST">
+    <form action="/user/login" method="POST">
       <label for="username">Username:</label>
-      <!-- The 'name' attribute provides properties for the body sent from this form
-       that can be accessed in other methods -->
+      <!-- The 'name' attribute provides properties for the body sent from this form that can be accessed in
+       other methods(namely in the userControllers script when looking up the username on the MongoDB Atlas) -->
       <input type="text" id="username" name="username" required>
       <label for="password">Password:</label>
       <input type="text" id="password" name="password" required>
-      <button>Create Account</button>
+      <button>Login</button>
     </form>
   </div>
 
