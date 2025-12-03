@@ -14,7 +14,7 @@ const blog_index = (req, res) => {
   // collection of blog-documents (which is the 'result' of the '.find()' method)
   // CATCHES any error and logs it onto the console
   Blog.find().sort({ createdAt: -1 })
-    .then((result) => {res.render('blogs/index', { title: 'All Blogs', blogs: result })})
+    .then((result) => {res.render('blogs/index', { title: 'All Blogs', blogs: result, currentUser: req.app.get('currentUser') })})
     .catch((err) => {console.log(err)})
 }
 

@@ -50,12 +50,17 @@ const user_login_post = async (req, res) => {
   // then the .exists method would return a <Pending> Promise (i.e. an ongoing query), instead
   // of the result of the query. If it does exist, it returns the _id property of the found
   // document, otherwise it returns 'null' and so can be used in If-statements.
-  // It then AWAITS to checks if the password is correct. If both are, it redirects to the Homepage.
+  // It then AWAITS to checks if the password is correct. If both are, it reassigns the 'currentUser'
+  // Express global variable to the queried User-document, and then redirects to the Homepage.
   // ELSE, it refreshes the login-View and asks the user to retry inputting their username and password
   if (await User.exists({ username: req.body.username })) {
     if (await User.exists({ password: req.body.password })) {
-      console.log('Inside password-check');
-      res.redirect('/');
+      User.findOne({ username: req.body.username, password: req.body.password })
+        .then((result) => {
+          req.app.set('currentUser', result)
+          res.redirect('/');
+        })
+        .catch((err) => {console.log(err)})
     }
     else {
       console.log('No password match');

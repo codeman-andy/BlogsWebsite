@@ -22,6 +22,9 @@ mongoose.connect(dbURI)
 // Registers the View-Engine for the initialized Express App, which uses the './views/' folder as default
 app.set('view engine', 'ejs');
 
+// Assigns an active-user variable (i.e. the user currently interacting with the website), which it defaults to a 'visitor'-user 
+app.set('currentUser', 'visitor');
+
 
 
 // MIDDLEWARE
