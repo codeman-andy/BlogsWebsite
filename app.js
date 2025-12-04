@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
 // GET-handler for the '/about' page
 app.get('/about', (req, res) => {
   // Renders the about-View
-  res.render('about', { title: 'About' });
+  res.render('about', { title: 'About', currentUser: req.app.get('currentUser')  });
 });
 
 // ROUTING PERTAINING TO THE BLOGS
@@ -71,5 +71,5 @@ app.use('/user', userRoutes);
 // setting the response-status to 404 as well
 // NOTE: MUST BE PLACED AT THE BOTTOM OF THE SCRIPT
 app.use((req, res) => {
-  res.status(404).render('404', { title: '404' });
+  res.status(404).render('404', { title: '404', currentUser: req.app.get('currentUser')  });
 });

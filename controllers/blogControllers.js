@@ -21,7 +21,7 @@ const blog_index = (req, res) => {
 // The controller for the '/blogs/create' GET-handler
 const blog_create_get = (req, res) => {
   // Renders the create-View
-  res.render('blogs/create', { title: 'Create a New Blog' });
+  res.render('blogs/create', { title: 'Create a New Blog', currentUser: req.app.get('currentUser')  });
 }
 
 // The controller for the '/blogs' POST-handler
@@ -50,10 +50,10 @@ const blog_details = (req, res) => {
   // CATCHES any error and logs it onto the console, and assigns the status of the Response-object
   // to 404 before redirecting the browser to the 404-View page
   Blog.findById(id)
-    .then((result) => {res.render('blogs/details', { blog: result, title: result.title })})
+    .then((result) => {res.render('blogs/details', { blog: result, title: result.title, currentUser: req.app.get('currentUser')  })})
     .catch((err) => {
       console.log(err)
-      res.status(404).render('404', { title: 'Blog Not Found' })
+      res.status(404).render('404', { title: 'Blog Not Found', currentUser: req.app.get('currentUser')  })
     })
 }
 
