@@ -14,6 +14,25 @@
     </a>
   </div>
 
+  <% if (currentUser != "visitor") { %>
+    <div class="details-comments">
+      <form action="/blogs/<%= blog._id %>" method="POST">
+        <textarea id="comment-body" name="body" placeholder="Write your comment here..." required></textarea>
+        <button>Post Comment</button>
+      </form>
+    </div>
+  <% } %>
+
+  <% if (comments.length > 0) { %>
+    <% comments.forEach(comment => { %>
+      <!--LATER ON, USE THIS TO HYPERLINK TO A USER'S PROFILE FROM THE COMMENTS-->
+      <!--<a class="single" href="/users/%= user._id %>">-->
+        <h3 class="author"><%= comment.author %></h3>
+        <p class="comment-body"><%= comment.body %></p>
+      <!--</a>-->
+      <% }) %>
+  <% } %>
+
   <%- include("../partials/footer.ejs") %>
 
   <script>

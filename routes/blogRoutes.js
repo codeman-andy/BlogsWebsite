@@ -26,6 +26,10 @@ router.get('/create', blogController.blog_create_get);
 // It is called once a user clicks on a blog title to go into its details-View page
 router.get('/:blogID', blogController.blog_details);
 
+// POST-handler for the '/blogs/:blogID' URL. Here, the ':blogID' is a variable route-parameter
+// It is called once a user posts a comment inside a given ':blogID' details-View page
+router.post('/:blogID', blogController.blog_details_post);
+
 // DEL-handler for the 'blogs/:blogID' URL. Here, the ':blogID' is a variable route-parameter
 // It is called once a user presses the 'Delete' button inside a details-View page
 router.delete('/:blogID', blogController.blog_delete);

@@ -97,6 +97,22 @@
     .details{
       position: relative;
     }
+    .details-comments{
+      display: block;
+      position: relative;
+      left: 2.5%;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
+    .details-comments textarea{
+      display: block;
+      height: 10%;
+      width: 30%;
+    }
+    .details-comments button{
+      margin: 5px 0;
+    }
     .delete{
       position: absolute;
       top: 0;
